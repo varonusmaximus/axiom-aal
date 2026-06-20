@@ -50,3 +50,14 @@ See [docs/spec.md](docs/spec.md) and [docs/deployment.md](docs/deployment.md).
 ## License
 
 MIT
+
+
+## Publish to GitHub
+
+```bash
+gh auth login
+gh repo create varonusmaximus/axiom-aal --public --source=. --remote=origin --push
+git push --tags
+```
+
+Enable branch protection on `main` (require PR + `ci` status check).

@@ -44,9 +44,21 @@ def _check_cursor_hooks(root: Path, cursor_dir: Path, *, strict: bool) -> int:
     else:
         print("OK: .cursor/hooks/aal-inject.sh (executable)")
 
-    smoke_file = Path(__file__).resolve().parent / "cursor_hook.py"
+    smoke_file: Path | None = None
+    for candidate in root.rglob("*.py"):
+        if any(part.startswith(".") for part in candidate.relative_to(root).parts):
+            continue
+        try:
+            head = candidate.read_text(encoding="utf-8", errors="replace")[:500]
+        except OSError:
+            continue
+        if "@!" in head:
+            smoke_file = candidate
+            break
+    if smoke_file is None:
+        smoke_file = Path(__file__).resolve().parent / "cursor_hook.py"
     if not smoke_file.is_file():
-        print("OPTIONAL: hook smoke test skipped (cursor_hook.py not found)")
+        print("OPTIONAL: hook smoke test skipped (no annotated file found)")
         return issues
 
     from aal.cursor_hook import run_cursor_pretooluse

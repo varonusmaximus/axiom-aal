@@ -1,6 +1,6 @@
 version: "1.3"
 skills_package: consumer
-skills_package_version: "1.0.0"
+skills_package_version: "1.3.0"
 scan_entire_file: true
 header_scan_lines: 50
 max_domains_per_annotation: 3
