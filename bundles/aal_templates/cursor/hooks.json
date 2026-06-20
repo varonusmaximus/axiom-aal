@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "command": ".cursor/hooks/aal-inject.sh",
+        "matcher": "Write|StrReplace",
+        "failClosed": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "managed_paths": [
+    ".cursor/aal.yaml",
+    ".cursor/hooks.json",
+    ".cursor/hooks/aal-inject.sh",
+    ".cursor/rules/aal.mdc",
+    ".github/workflows/aal-gate.yml"
+  ]
+}

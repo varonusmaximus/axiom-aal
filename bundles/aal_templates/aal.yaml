@@ -1,0 +1,26 @@
+version: "1.3"
+skills_package: consumer
+skills_package_version: "1.0.0"
+scan_entire_file: true
+header_scan_lines: 50
+max_domains_per_annotation: 3
+inject_log: .cursor/logs/aal-inject.jsonl
+ignore_dirs:
+  - .git
+  - node_modules
+  - __pycache__
+  - venv
+  - .venv
+  - dist
+  - build
+extensions:
+  - .py
+  - .ts
+  - .js
+  - .go
+  - .rs
+  - .java
+  - .sql
+  - .vue
+  - .html
+  - .sh
