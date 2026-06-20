@@ -35,10 +35,7 @@ def test_normalize_file_path_relative():
 
 def test_normalize_file_path_absolute_under_root():
     root = Path("/repo")
-    assert (
-        normalize_file_path("/repo/pkg/mod.py", root, workspace_roots=["/repo"])
-        == "pkg/mod.py"
-    )
+    assert normalize_file_path("/repo/pkg/mod.py", root, workspace_roots=["/repo"]) == "pkg/mod.py"
 
 
 def test_parse_cursor_pretooluse_ignores_shell():

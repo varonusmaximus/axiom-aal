@@ -25,6 +25,11 @@ python = ">=3.12,<4.0"
 pytest = ">=7.4.0"
 pytest-cov = ">=4.1.0"
 pyyaml = ">=6.0"
+ruff = ">=0.14.0"
+mypy = ">=1.20.0"
+bandit = ">=1.8.6"
+pip-audit = ">=2.6.0"
+pre-commit = ">=3.5.0"
 
 [project]
 name = "axiom-aal"
@@ -57,6 +62,11 @@ dev = [
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
     "pyyaml>=6.0",
+    "ruff>=0.14.0",
+    "mypy>=1.20.0",
+    "bandit>=1.8.6",
+    "pip-audit>=2.6.0",
+    "pre-commit>=3.5.0",
 ]
 
 [tool.pytest.ini_options]
@@ -74,3 +84,40 @@ precision = 2
 show_missing = true
 skip_covered = false
 fail_under = 80
+
+
+[tool.bandit]
+skips = ["B608", "B314"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "N", "UP", "B", "C4", "ARG", "SIM"]
+ignore = [
+    "E501", "F821", "ARG002", "ARG001", "ARG004", "B904", "N812", "SIM102",
+    "ARG005", "F841", "UP035", "SIM117", "B027", "F401", "F822", "B023",
+    "N818", "B008", "B011", "B017", "UP028", "B007", "W291", "SIM118",
+    "UP006", "UP007", "UP045", "UP046", "UP047",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "I001", "F401"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = false
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+no_strict_optional = true
+disable_error_code = [
+    "abstract", "arg-type", "assignment", "attr-defined", "call-arg", "misc",
+    "name-defined", "no-any-return", "override", "return-value", "type-var",
+    "union-attr", "var-annotated",
+]

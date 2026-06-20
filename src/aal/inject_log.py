@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -28,7 +28,7 @@ def append_inject_log(
 ) -> None:
     """Append one JSONL record for an inject attempt."""
     entry: dict[str, Any] = {
-        "ts": datetime.now(timezone.utc).isoformat(),
+        "ts": datetime.now(UTC).isoformat(),
         "file": file,
         "line": line,
         "ok": ok,

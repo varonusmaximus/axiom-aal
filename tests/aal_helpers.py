@@ -92,7 +92,7 @@ def setup_minimal_repo(
         (
             '{\n  "version": 1,\n  "hooks": {\n'
             '    "preToolUse": [\n'
-            '      {\n'
+            "      {\n"
             '        "command": ".cursor/hooks/aal-inject.sh",\n'
             '        "matcher": "Write|StrReplace",\n'
             '        "failClosed": true\n'

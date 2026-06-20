@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 import sys
 from pathlib import Path
@@ -11,7 +12,6 @@ from typing import Any
 from aal.inject_log import append_inject_log, default_inject_log_path
 from aal.middleware import EditIntent
 from aal.resolve import resolve_edit
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -120,10 +120,7 @@ def parse_cursor_pretooluse(
 
 def _format_agent_message(payload: dict[str, Any]) -> str:
     domains = ", ".join(payload.get("domains") or []) or "(none)"
-    header = (
-        f"# AAL inject: {payload['file']}:{payload['line']}\n"
-        f"domains: {domains}\n\n"
-    )
+    header = f"# AAL inject: {payload['file']}:{payload['line']}\ndomains: {domains}\n\n"
     content = payload.get("content") or ""
     return header + content if content else header.rstrip()
 
@@ -159,8 +156,7 @@ def run_cursor_pretooluse(root: Path, payload: dict[str, Any]) -> dict[str, Any]
             error=str(exc),
         )
         msg = (
-            f"AAL inject failed for {rel_file}:{line}: {exc}\n"
-            "Fix with: aal verify-domains --strict"
+            f"AAL inject failed for {rel_file}:{line}: {exc}\nFix with: aal verify-domains --strict"
         )
         logger.warning(msg)
         return {

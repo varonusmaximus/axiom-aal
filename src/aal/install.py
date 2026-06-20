@@ -104,9 +104,7 @@ def cmd_upgrade(root: Path, *, force: bool = False, dry_run: bool = False) -> in
     cursor_dir = root / cursor_config_dir_name()
     manifest_path = _manifest_path(cursor_dir)
     if not manifest_path.is_file():
-        print(
-            "ERROR: missing .cursor/.aal-manifest.json — run: aal install --project --hooks"
-        )
+        print("ERROR: missing .cursor/.aal-manifest.json — run: aal install --project --hooks")
         return 1
 
     opts = InstallOptions(root=root, hooks=True, ci=True, force=force, dry_run=dry_run)
